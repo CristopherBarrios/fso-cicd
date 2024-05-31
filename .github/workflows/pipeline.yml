@@ -1,0 +1,51 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+    simple_deployment_pipeline:
+        runs-on: ubuntu-20.04
+        services:
+            mongo:
+              image: mongo:4.4
+              ports:
+                - 27017:27017
+        steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: '20'
+
+
+        - name: Install dependencies (backend)
+          run: |
+            cd phonebook-backend
+            npm install
+
+        - name: Check Lint (backend)
+          run: |
+            cd phonebook-backend
+            npm run lint
+
+        - name: Check Lint (backend)
+          run: |
+            cd phonebook-backend
+            npm run lint
+
+        - name: Run tests (backend)
+          run: |
+            cd phonebook-backend
+            npm test
+
+        - name: Install dependencies (frontend)
+          run: |
+            cd phonebook-frontend
+            npm install
+    
