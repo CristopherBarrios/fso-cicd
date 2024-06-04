@@ -42,6 +42,11 @@ jobs:
           cd phonebook-backend
           npm test
 
+      - name: Build (backend)
+        run: |
+            cd phonebook-backend
+            npm run build
+
       - name: Install dependencies (frontend)
         run: |
           cd phonebook-frontend
