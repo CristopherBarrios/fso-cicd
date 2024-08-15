@@ -41,8 +41,8 @@ module.exports = {
     }
   },
   node: {
-    fs: 'empty',
-    net: 'empty',
-    http: 'empty'
+    // fs: 'empty',
+    // net: 'empty',
+    // http: 'empty'
   }
 }
