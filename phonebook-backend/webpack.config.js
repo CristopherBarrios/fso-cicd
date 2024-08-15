@@ -36,7 +36,7 @@ module.exports = {
       url: require.resolve('url/'),
       zlib: require.resolve('browserify-zlib'),
       vm: require.resolve('vm-browserify'),
-      async_hooks: require.resolve('async_hooks-browserify'),
+      // async_hooks: require.resolve('async_hooks-browserify'),
       querystring: require.resolve('querystring-es3')
     }
   },
