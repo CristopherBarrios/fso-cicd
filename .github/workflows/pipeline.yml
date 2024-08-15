@@ -52,8 +52,8 @@ jobs:
           cd phonebook-frontend
           npm install
 
-          
+
       - name: Check Lint (frontend)
-          run: |
-            cd phonebook-frontend
-            npm run lint
+        run: |
+          cd phonebook-frontend
+          npm run lint
