@@ -57,3 +57,9 @@ jobs:
         run: |
           cd phonebook-frontend
           npm run lint
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Install Playwright dependencies
+        run: sudo npx playwright install-deps
