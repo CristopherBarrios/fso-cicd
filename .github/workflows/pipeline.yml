@@ -63,3 +63,8 @@ jobs:
 
       - name: Install Playwright dependencies
         run: sudo npx playwright install-deps
+
+      - name: Test (frontend)
+        run: |
+          cd phonebook-frontend
+          npm test
