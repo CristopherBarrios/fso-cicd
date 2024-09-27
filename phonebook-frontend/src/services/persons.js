@@ -17,8 +17,13 @@ const getAll = () => {
   }
 
   const eliminar = (id) => {
-    const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data)
-  }
+    const request = axios.delete(`${baseUrl}/${id}`);
+    return request
+      .then(response => response.data || {})
+      .catch(error => {
+        console.error('Error deleting person:', error);
+        return {}; 
+      });
+  };
   
   export default { getAll, create, update, eliminar }
