@@ -68,3 +68,10 @@ jobs:
         run: |
           cd phonebook-frontend
           npm test
+
+      - name: e2e tests (frontend)
+        uses: cypress-io/github-action@v5
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:4173 
