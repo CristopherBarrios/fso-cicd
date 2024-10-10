@@ -76,3 +76,8 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5173
           working-directory: phonebook-frontend
+
+      - name: Build (frontend)
+        run: |
+            cd phonebook-frontend
+            npm run build
