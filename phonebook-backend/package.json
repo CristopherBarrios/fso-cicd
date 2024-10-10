@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "start-prod": "npm run start",
     "lint": "eslint .",
     "build": "webpack --mode production",
     "test": "mocha tests/integration.test.js"
