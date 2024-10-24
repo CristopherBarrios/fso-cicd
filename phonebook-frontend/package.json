@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start-prods": "vite preview --port $PORT",
     "build": "vite build",
     "start-prod": "npm run dev",
     "test:e2e": "cypress run",
