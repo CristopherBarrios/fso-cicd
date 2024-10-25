@@ -82,6 +82,10 @@ jobs:
             cd phonebook-frontend
             npm run build
 
-      - name: Trigger deployment
+      - name: Trigger deployment (frontend)
         if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID_FRONT }}?key=${{ secrets.RENDER_API_KEY_FRONT }}
+
+      - name: Trigger deployment (backend)
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID_BACK }}?key=${{ secrets.RENDER_API_KEY_BACK }}
