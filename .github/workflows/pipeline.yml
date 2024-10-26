@@ -105,3 +105,33 @@ jobs:
         uses: Ilshidur/action-discord@master
         with:
           args: '🎉(backend) Deployment succeeded for commit ${{ github.sha }} on branch ${{ github.ref }}.'
+
+
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.67.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          default_bump: patch
+          tag_prefix: ""
+          release_branches: main
+      - name: Notify success
+        if: ${{ success() }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '🎉 Deployment succeeded for commit ${{ github.sha }} on branch ${{ github.ref }}.'
+      - name: Notify failured
+        if: ${{ failure() }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "❌ Deployment failed for commit ${{ github.sha }} on branch ${{ github.ref }}. Please check the logs for details."
